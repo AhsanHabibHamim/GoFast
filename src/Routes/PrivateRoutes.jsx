@@ -5,12 +5,12 @@ import { Navigate } from 'react-router';
 const PrivateRoutes = ({children}) => {
     const {user, loading} = useAuth();
     if(loading){
-        <span className="loading loading-spinner loading-xl"></span>
+        return <span className="loading loading-spinner loading-xl"></span>;
     }
     if(!user){
-        <Navigate to="/login"></Navigate>
+        return <Navigate to="/login" />;
     }
-    return {children} ;
+    return children;
 };
 
 export default PrivateRoutes;

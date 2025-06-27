@@ -4,6 +4,11 @@ import Home from "./../Pages/Home/Home";
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
+import Coverage from "../Pages/Coverage/Coverage";
+import PrivateRoutes from "./../Routes/PrivateRoutes";
+import SendParcel from "../Pages/SendParcel/SendParcel";
+import Dashboard from "../Layouts/Dashboard";
+import MyPercels from "../Pages/Dashboard/MyPercels";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +18,18 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/coverage",
+        Component: Coverage,
+      },
+      {
+        path: "/sendParcel",
+        element: (
+          <PrivateRoutes>
+            <SendParcel></SendParcel>
+          </PrivateRoutes>
+        ),
       },
     ],
   },
@@ -28,6 +45,20 @@ export const router = createBrowserRouter([
         path: "register",
         Component: Register,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoutes>
+        <Dashboard />
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        path:"myParcels",
+        Component: MyPercels,
+      }
     ],
   },
 ]);
